@@ -134,21 +134,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712051316001_Init.cs" />
-    <Compile Include="Migrations\201712051316001_Init.Designer.cs">
-      <DependentUpon>201712051316001_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712051517103_Initi.cs" />
-    <Compile Include="Migrations\201712051517103_Initi.Designer.cs">
-      <DependentUpon>201712051517103_Initi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712051537183_Initi1.cs" />
-    <Compile Include="Migrations\201712051537183_Initi1.Designer.cs">
-      <DependentUpon>201712051537183_Initi1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712051540032_Initi2.cs" />
-    <Compile Include="Migrations\201712051540032_Initi2.Designer.cs">
-      <DependentUpon>201712051540032_Initi2.cs</DependentUpon>
+    <Compile Include="Migrations\201712060840106_Init.cs" />
+    <Compile Include="Migrations\201712060840106_Init.Designer.cs">
+      <DependentUpon>201712060840106_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
@@ -211,17 +199,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712051316001_Init.resx">
-      <DependentUpon>201712051316001_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712051517103_Initi.resx">
-      <DependentUpon>201712051517103_Initi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712051537183_Initi1.resx">
-      <DependentUpon>201712051537183_Initi1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712051540032_Initi2.resx">
-      <DependentUpon>201712051540032_Initi2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712060840106_Init.resx">
+      <DependentUpon>201712060840106_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
