@@ -18,7 +18,14 @@ namespace MVC_GarageApp.Controllers
         // GET: ParkedVehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            var model = db.Vehicles.ToList().OrderBy(a => a.Type);
+            return View(model);
+        }
+
+        public ActionResult Overview()
+        {
+            var model = db.Vehicles.ToList().OrderBy(a => a.Type);
+            return View(model);
         }
 
         // GET: ParkedVehicles/Details/5
@@ -47,10 +54,10 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels,TStamp")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
-            {
+            {                           
                 db.Vehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,7 +86,7 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels,TStamp")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {

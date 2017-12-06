@@ -10,7 +10,7 @@ namespace MVC_GarageApp.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MVC_GarageApp.DataAccessLayer.VehicleContext context)
@@ -20,33 +20,39 @@ namespace MVC_GarageApp.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            context.Vehicles.AddOrUpdate(x => x.Type,
+            context.Vehicles.AddOrUpdate(x => x.RegistrationNumber,
                 new ParkedVehicle()
                 {
-                    Type = "Car",
+                    Type = Models.Type.Car,                   
                     RegistrationNumber = "ABC123",
                     Colour = "Blue",
                     Brand = "Audi",
                     Model = "2004",
                     NumberOfWheels = 4,
+                    TStamp = DateTime.Now,
+                    
                 },
                 new ParkedVehicle()
                 {
-                    Type = "Motorcycle",
+                    Type = Models.Type.Motorcycle,
                     RegistrationNumber = "MC639",
                     Colour = "Red",
                     Brand = "Yamaha",
                     Model = "2016",
                     NumberOfWheels = 2,
+                    TStamp = DateTime.Now,
+
                 },
                 new ParkedVehicle()
                 {
-                    Type = "Car",
+                    Type = Models.Type.Car,
                     RegistrationNumber = "CAR007",
                     Colour = "Silver",
                     Brand = "Toyota",
                     Model = "2017",
                     NumberOfWheels = 4,
+                    TStamp = DateTime.Now,
+
                 });
 
 
