@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
 using MVC_GarageApp.Models;
+using PagedList;
 
 namespace MVC_GarageApp.Controllers
 {
@@ -16,9 +17,12 @@ namespace MVC_GarageApp.Controllers
         private VehicleContext db = new VehicleContext();
 
         // GET: ParkedVehicles
-        public ActionResult Index()
+        //Adding a search term to the index
+        public ActionResult Index(string searchTerm = null, int page = 1)
         {
-            return View(db.ParkeraVehicles.ToList());
+            var model = db.ParkeraVehicles.Where
+                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page, 3);
+            return View(model);
         }
         //New ActionResult to add a new view
         public ActionResult Car()

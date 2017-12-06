@@ -20,7 +20,7 @@ namespace MVC_GarageApp.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            context.ParkeraVehicles.AddOrUpdate(x => x.Type,
+            context.ParkeraVehicles.AddOrUpdate(x => x.RegistrationNumber,
                 new ParkedVehicle()
                 {
                     Type = Models.Type.Car,
@@ -57,6 +57,16 @@ namespace MVC_GarageApp.Migrations
                     Model = "2014",
                     NumberOfWheels = 6,
                 });
+
+            ////extend the database to 1000
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    context.ParkeraVehicles.AddOrUpdate(r => r.Type.ToString(),
+
+            //         new ParkedVehicle { Type =(Models.Type)i, RegistrationNumber=i.ToString(),
+            //         Color = i.ToString(), Brand =i.ToString(), Model =i.ToString(),
+            //          });
+            }
         }
     }
-}
+
