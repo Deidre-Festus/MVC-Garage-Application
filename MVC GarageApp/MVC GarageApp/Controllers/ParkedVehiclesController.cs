@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
-using MVC_GarageApp.Models;
+using MVC_GarageApp.Models;              
 using PagedList;
 
 namespace MVC_GarageApp.Controllers
