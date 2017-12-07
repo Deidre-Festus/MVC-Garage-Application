@@ -1,11 +1,14 @@
 ﻿ @model IEnumerable<MVC_GarageApp.Models.ParkedVehicle>
 <h2>Car</h2>
 
-<div>
-    <button class="btn btn-default">@Html.ActionLink("Create New", "Create")</button>
-    <div class="form-group pull-right">
-        <form>
-            <input type="text" class="form-control" placeholder="What you are looking for?" />
+<div class="row">
+    <button class="btn btn-default">@Html.ActionLink("Park New", "Create")</button>
+    <div class="form-group pull-right input-group">
+        <form method="get">
+            <input type="search" name="searchTerm" class="form-control" placeholder="Search for..." />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-info">Search</button>
+            </span>
         </form>
     </div>
 </div>
@@ -55,7 +58,7 @@
         <td>
           <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
           <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
-          <button class="btn btn-default">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>  
+          <button class="btn btn-default">@Html.ActionLink("Unpark", "Delete", new { id = item.Id })</button>  
         </td>
     </tr>
 }
