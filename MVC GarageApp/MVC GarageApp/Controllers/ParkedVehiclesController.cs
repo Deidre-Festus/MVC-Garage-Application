@@ -8,8 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
 using MVC_GarageApp.Models;              
-using PagedList;
-
+ 
 namespace MVC_GarageApp.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -18,10 +17,10 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles
         //Adding a search term to the index
-        public ActionResult Index(string searchTerm = null, int page = 1)
+        public ActionResult Index(string searchTerm = null)
         {
             var model = db.ParkeraVehicles.Where
-                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page, 3);
+                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList();
             return View(model);
         }
         //New ActionResult to add a new view
@@ -65,6 +64,8 @@ namespace MVC_GarageApp.Controllers
         // GET: ParkedVehicles/Create
         public ActionResult Create()
         {
+
+            
             return View();
         }
 
@@ -78,10 +79,11 @@ namespace MVC_GarageApp.Controllers
             if (ModelState.IsValid)
             {
                 db.ParkeraVehicles.Add(parkedVehicle);
+                parkedVehicle.CheckIn = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             return View(parkedVehicle);
         }
 

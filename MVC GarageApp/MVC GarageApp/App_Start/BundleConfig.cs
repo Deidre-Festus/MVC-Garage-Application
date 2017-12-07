@@ -8,12 +8,6 @@ namespace MVC_GarageApp
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/otf").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery-ui-{version}.js",
-                "~/Scripts/jquery.unobtrusive*",
-                "~/Scripts/jquery.validate*"
-                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
@@ -33,34 +27,6 @@ namespace MVC_GarageApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-
-            //Adding reference to jqueryUI
-            //usually we add just wat we want to use but i add them all here 
-            //because I have not decied yet.
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
-                "~/Content/themes/base/accordion.css",
-                "~/Content/themes/base/all.css",
-                "~/Content/themes/base/autocomplete.css",
-                "~/Content/themes/base/base.css",
-                "~/Content/themes/base/button.css",
-                "~/Content/themes/base/core.css",
-                "~/Content/themes/base/datepicker.css",
-                "~/Content/themes/base/dialog.css",
-                "~/Content/themes/base/draggable.css",
-                "~/Content/themes/base/jquery-ui.css",
-                "~/Content/themes/base/jquery-ui.min.css",
-                "~/Content/themes/base/menu.css",
-                "~/Content/themes/base/progressbar.css",
-                "~/Content/themes/base/resizable.css",
-                "~/Content/themes/base/selectable.css",
-                "~/Content/themes/base/selectmenu.css",
-                "~/Content/themes/base/slider.css",
-                "~/Content/themes/base/sortable.css",
-                "~/Content/themes/base/spinner.css",
-                "~/Content/themes/base/tabs.css",
-                "~/Content/themes/base/theme.css",
-                "~/Content/themes/base/tooltip.css"
-                ));
         }
     }
 }
