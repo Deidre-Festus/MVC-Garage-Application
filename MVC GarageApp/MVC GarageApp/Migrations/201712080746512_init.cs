@@ -18,7 +18,7 @@ namespace MVC_GarageApp.Migrations
                         Brand = c.String(nullable: false, maxLength: 40),
                         Model = c.String(nullable: false, maxLength: 20),
                         NumberOfWheels = c.Int(nullable: false),
-                        CheckIn = c.DateTime(nullable: false),
+                        CheckIn = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => t.Id);
             
