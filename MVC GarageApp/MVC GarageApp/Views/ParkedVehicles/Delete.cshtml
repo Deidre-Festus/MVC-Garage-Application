@@ -28,11 +28,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Colour)
+            @Html.DisplayNameFor(model => model.Color)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Colour)
+            @Html.DisplayFor(model => model.Color)
         </dd>
 
         <dt>
@@ -59,22 +59,14 @@
             @Html.DisplayFor(model => model.NumberOfWheels)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TStampIn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TStampIn)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button value="Delete" type="submit" class="btn btn-default">Unpark</button>
+          <button class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>  
         </div>
     }
 </div>

@@ -1,53 +1,57 @@
-﻿using System;
+﻿using MVC_GarageApp.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace MVC_GarageApp.Models
 {
-    public enum Type
-    {
-        Aeroplane,
-        Boat,
-        Car,
-        Motorcycle,
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class ParkedVehicle
     {
         public int Id { get; set; }
-        [Required]
-        [DisplayName("Vehicle Type")]
+        [Required(ErrorMessage ="You should choose on of the list")]
+        [ScaffoldColumn(false)]
+        [DisplayFormat(NullDisplayText = "Undefined")]
         public Type Type { get; set; }
-        [Required]
-        [DisplayName("Registration Number")]
+        [Required(ErrorMessage ="Registration Number should include three letters and three numbers")]
+        [StringLength(6)]
+        [DisplayFormat(NullDisplayText = "Undefined")]
         public string RegistrationNumber { get; set; }
-        [Required]
-        [DisplayName("Vehicle Colour")]
-        public string Colour { get; set; }
-        [Required]
-        [DisplayName("Vehicle Brand")]
-        public string Brand { get; set; }
-        [Required]
-        [DisplayName("Vehicle Model")]
+        [Required(ErrorMessage = "Please insert a valid color")]
+        [StringLength(20)]
+        [DisplayFormat(NullDisplayText = "Undefined")]
+        [MaxWords(1)]
+        public string Color { get; set; }
+        [Required(ErrorMessage ="Pleas insert a valid name")]
+        [StringLength(40)]
+        [DisplayFormat(NullDisplayText = "Undefined")]
+        public string  Brand { get; set; }
+        [Required(ErrorMessage ="Please insert a valid model")]
+        [StringLength(20)]
+        [DisplayFormat(NullDisplayText = "Undefined")]
         public string Model { get; set; }
-        [Required]
-        [DisplayName("Number of Wheels")]
+        [Required(ErrorMessage ="Please insert a valid number of wheels")]
+        [DisplayFormat(NullDisplayText = "Undefined")]
+        [MaxWords(1)]
         public int NumberOfWheels { get; set; }
-
-        //[Column(TypeName = "datetime2")]
-        [DataType(DataType.Date)]
-        [DisplayName("Parking Start Time")]
-        public DateTime TStampIn { get; set; }
-
-        [DataType(DataType.Date)]
-        //[Column(TypeName = "datetime2")]
-        [DisplayName("Parking End Time")]
-        public DateTime? TStampOut { get; set; }
+        [Column(TypeName ="datetime2")]
+        public DateTime CheckIn { get; set; }
 
     }
+
+    //enum for dropdown list
+    public enum Type
+    {
+        Car,
+        Motorcycle,
+        Boat,
+        Airplane
     }
+}

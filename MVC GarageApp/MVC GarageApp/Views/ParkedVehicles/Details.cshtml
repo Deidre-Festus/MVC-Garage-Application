@@ -27,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Colour)
+            @Html.DisplayNameFor(model => model.Color)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Colour)
+            @Html.DisplayFor(model => model.Color)
         </dd>
 
         <dt>
@@ -58,17 +58,9 @@
             @Html.DisplayFor(model => model.NumberOfWheels)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TStampIn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TStampIn)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+   <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
+    <button class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button> 
 </p>

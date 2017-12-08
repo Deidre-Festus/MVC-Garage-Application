@@ -10,7 +10,7 @@ namespace MVC_GarageApp.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MVC_GarageApp.DataAccessLayer.VehicleContext context)
@@ -20,44 +20,53 @@ namespace MVC_GarageApp.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            context.Vehicles.AddOrUpdate(x => x.RegistrationNumber,
+            context.ParkeraVehicles.AddOrUpdate(x => x.RegistrationNumber,
                 new ParkedVehicle()
                 {
-                    Type = Models.Type.Car,                   
+                    Type = Models.Type.Car,
                     RegistrationNumber = "ABC123",
-                    Colour = "Blue",
-                    Brand = "Audi",
-                    Model = "2004",
+                    Color = "Red",
+                    Brand = "Ferrari",
+                    Model = "2017",
                     NumberOfWheels = 4,
-                    TStampIn = DateTime.Now,
-                    TStampOut = DateTime.Now,
-                    
                 },
                 new ParkedVehicle()
                 {
                     Type = Models.Type.Motorcycle,
                     RegistrationNumber = "MC639",
-                    Colour = "Red",
-                    Brand = "Yamaha",
-                    Model = "2016",
+                    Color = "Black-orange",
+                    Brand = "BMW",
+                    Model = "2010",
                     NumberOfWheels = 2,
-                    TStampIn = DateTime.Now,
-                    TStampOut = DateTime.Now,
                 },
                 new ParkedVehicle()
                 {
-                    Type = Models.Type.Car,
+                    Type = Models.Type.Boat,
+                    RegistrationNumber = "MC639",
+                    Color = "White",
+                    Brand = "Sad-eye",
+                    Model = "2000",
+                    NumberOfWheels = 0,
+                },
+                new ParkedVehicle()
+                {
+                    Type = Models.Type.Airplane,
                     RegistrationNumber = "CAR007",
-                    Colour = "Silver",
-                    Brand = "Toyota",
-                    Model = "2017",
-                    NumberOfWheels = 4,
-                    TStampIn = DateTime.Now,
-                    TStampOut = DateTime.Now,
+                    Color = "Silver",
+                    Brand = "F-16",
+                    Model = "2014",
+                    NumberOfWheels = 6,
                 });
 
+            ////extend the database to 1000
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    context.ParkeraVehicles.AddOrUpdate(r => r.Type.ToString(),
 
-
+            //         new ParkedVehicle { Type =(Models.Type)i, RegistrationNumber=i.ToString(),
+            //         Color = i.ToString(), Brand =i.ToString(), Model =i.ToString(),
+            //          });
+            }
         }
     }
-}
+
