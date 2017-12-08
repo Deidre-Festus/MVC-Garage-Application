@@ -5,7 +5,7 @@
 
 <h4>License</h4><hr>
 <i>MIT License</i>
-<cite>Copyright (c) 2017</cite>
+<cite>Copyright 2017</cite>
 <p>
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
