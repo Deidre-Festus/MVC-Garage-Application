@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,11 +39,15 @@ namespace MVC_GarageApp.Models
         [DisplayName("Number of Wheels")]
         public int NumberOfWheels { get; set; }
 
-       
-        [DataType(DataType.DateTime)]
+        //[Column(TypeName = "datetime2")]
+        [DataType(DataType.Date)]
         [DisplayName("Parking Start Time")]
-        public DateTime TStamp { get; set; }
-            
+        public DateTime TStampIn { get; set; }
 
-        }
+        [DataType(DataType.Date)]
+        //[Column(TypeName = "datetime2")]
+        [DisplayName("Parking End Time")]
+        public DateTime? TStampOut { get; set; }
+
+    }
     }

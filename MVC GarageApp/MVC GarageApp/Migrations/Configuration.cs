@@ -29,7 +29,8 @@ namespace MVC_GarageApp.Migrations
                     Brand = "Audi",
                     Model = "2004",
                     NumberOfWheels = 4,
-                    TStamp = DateTime.Now,
+                    TStampIn = DateTime.Now,
+                    TStampOut = DateTime.Now,
                     
                 },
                 new ParkedVehicle()
@@ -40,8 +41,8 @@ namespace MVC_GarageApp.Migrations
                     Brand = "Yamaha",
                     Model = "2016",
                     NumberOfWheels = 2,
-                    TStamp = DateTime.Now,
-
+                    TStampIn = DateTime.Now,
+                    TStampOut = DateTime.Now,
                 },
                 new ParkedVehicle()
                 {
@@ -51,8 +52,8 @@ namespace MVC_GarageApp.Migrations
                     Brand = "Toyota",
                     Model = "2017",
                     NumberOfWheels = 4,
-                    TStamp = DateTime.Now,
-
+                    TStampIn = DateTime.Now,
+                    TStampOut = DateTime.Now,
                 });
 
 

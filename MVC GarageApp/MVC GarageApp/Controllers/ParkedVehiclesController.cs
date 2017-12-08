@@ -16,9 +16,20 @@ namespace MVC_GarageApp.Controllers
         private VehicleContext db = new VehicleContext();
 
         // GET: ParkedVehicles
-        public ActionResult Index()
-        {
-            var model = db.Vehicles.ToList().OrderBy(a => a.Type);
+        //public ActionResult Index()
+        //{
+        //    var model = db.Vehicles.ToList().OrderBy(a => a.Type);
+        //    return View(model);
+        //}
+
+        public ActionResult Index(string searchString)
+        {            
+            var model = from x in db.Vehicles
+                        select x;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.RegistrationNumber.Contains(searchString));
+            }           
             return View(model);
         }
 
@@ -54,11 +65,13 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels,TStamp")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Colour,Brand,Model,NumberOfWheels,TStampIn")] ParkedVehicle parkedVehicle)
         {
+            
             if (ModelState.IsValid)
-            {                           
+            {                                                                                      
                 db.Vehicles.Add(parkedVehicle);
+                parkedVehicle.TStampIn = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
