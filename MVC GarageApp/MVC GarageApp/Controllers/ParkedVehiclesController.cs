@@ -7,7 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
-using MVC_GarageApp.Models;              
+using MVC_GarageApp.Models;
+using PagedList;
+using PagedList.Mvc;              
  
 namespace MVC_GarageApp.Controllers
 {
@@ -17,31 +19,31 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles
         //Adding a search term to the index
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(int? page ,string searchTerm = null)
         {
             var model = db.ParkeraVehicles.Where
-                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList();
+                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
         //New ActionResult to add a new view
-        public ActionResult Car()
+        public ActionResult Car(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Car).ToList();
+            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Car).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
-        public ActionResult Motorcycle()
+        public ActionResult Motorcycle(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Motorcycle).ToList();
+            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Motorcycle).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
-        public ActionResult Boat()
+        public ActionResult Boat(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Boat).ToList();
+            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Boat).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
-        public ActionResult Airplane()
+        public ActionResult Airplane(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Airplane).ToList();
+            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Airplane).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
 

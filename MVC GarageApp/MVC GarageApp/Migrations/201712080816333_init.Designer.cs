@@ -13,7 +13,7 @@ namespace MVC_GarageApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201712080746512_init"; }
+            get { return "201712080816333_init"; }
         }
         
         string IMigrationMetadata.Source

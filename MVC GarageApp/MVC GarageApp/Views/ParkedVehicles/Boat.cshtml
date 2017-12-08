@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_GarageApp.Models.ParkedVehicle>
+﻿@model IPagedList<ParkedVehicle>
 
 <h2>Boat</h2>
 
@@ -16,22 +16,22 @@
 <table class="table table-responsive table-hover table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.First().Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
+            @Html.DisplayNameFor(model => model.First().RegistrationNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayNameFor(model => model.First().Color)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Brand)
+            @Html.DisplayNameFor(model => model.First().Brand)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Model)
+            @Html.DisplayNameFor(model => model.First().Model)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOfWheels)
+            @Html.DisplayNameFor(model => model.First().NumberOfWheels)
         </th>
         <th></th>
     </tr>
@@ -63,5 +63,9 @@
         </td>
     </tr>
 }
-
 </table>
+<div class="row">
+    <div class="text-center">
+        @Html.PagedListPager(Model, Page => Url.Action("Boat", new { Page}))  
+    </div>
+</div>
