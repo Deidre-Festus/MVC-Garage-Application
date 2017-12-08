@@ -19,11 +19,45 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles
         //Adding a search term to the index
-        public ActionResult Index(int? page ,string searchTerm = null)
+        public ActionResult Index(int? page, string searchBy, string search)     //,string searchTerm = null
         {
-            var model = db.ParkeraVehicles.Where
-                (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page ?? 1, 3);
-            return View(model);
+            if (searchBy == "RegistrationNumber")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.RegistrationNumber == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else if (searchBy == "CheckIn")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.CheckIn.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else if (searchBy == "Type")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.Type.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else if (searchBy == "Brand")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.Brand == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else if (searchBy == "Model")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.Model == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else if (searchBy == "NumberOfWheels")
+            {
+                return View(db.ParkeraVehicles.Where(x => x.Type.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+            }
+            else
+            {
+                return View(db.ParkeraVehicles.Where(x => x.RegistrationNumber.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 2));
+
+            }
+
+
+
+
+
+            //var model = db.ParkeraVehicles.Where
+            //    (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page ?? 1, 3);
+            //return View(model);
         }
         //New ActionResult to add a new view
         public ActionResult Car(int? page)
