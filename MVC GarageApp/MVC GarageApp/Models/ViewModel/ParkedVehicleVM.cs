@@ -15,7 +15,7 @@ namespace MVC_GarageApp.Models.ViewModel
         public string Color { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime CheckIn { get; set; }
-        [Column(TypeName = "Checkout")]
+        [Column(TypeName = "datetime2")]
         public DateTime Checkout { get; set; }
         public string Brand { get; set; }
         public string  Model { get; set; }

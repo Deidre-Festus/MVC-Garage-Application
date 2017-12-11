@@ -19,8 +19,10 @@ namespace MVC_GarageApp.Controllers
         private VehicleContext db = new VehicleContext();
 
         // GET: ParkedVehicles
+        [OutputCache(Duration =10)]
         public ActionResult Index(int? page, string searchBy, string search, string sortBy)     
         {
+            System.Threading.Thread.Sleep(1000);
             ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
             ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
 
@@ -188,8 +190,9 @@ namespace MVC_GarageApp.Controllers
         // POST: ParkedVehicles/Delete/5"Receipt",receipt
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, IEnumerable<int> vehiclesIdsToDelete)
         {
+            //db.ParkeraVehicles.Where(x => vehiclesIdsToDelete.Contains(x.Id)).ToList().ForEach(db.ParkeraVehicles.Remove(ParkedVehicle));
             ParkedVehicle parkedVehicle = db.ParkeraVehicles.Find(id);
             db.ParkeraVehicles.Remove(parkedVehicle);
             db.SaveChanges();

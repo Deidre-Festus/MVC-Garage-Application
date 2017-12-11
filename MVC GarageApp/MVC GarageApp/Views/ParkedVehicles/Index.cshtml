@@ -1,4 +1,4 @@
-﻿@model IPagedList<ParkedVehicleVM>
+﻿@model IPagedList<ParkedVehicle>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 <h2>Garage</h2>
 
 <div class="row">
-    <button class="btn btn-default">@Html.ActionLink("Park New", "Create")</button>
+     <button class="btn btn-default" id="btnSubmit">@Html.ActionLink("Park New", "Create")</button>
 </div>
  <br />
 <div class="jumbotron">

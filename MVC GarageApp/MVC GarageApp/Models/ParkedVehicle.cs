@@ -43,13 +43,14 @@ namespace MVC_GarageApp.Models
         public int NumberOfWheels { get; set; }
         [Column(TypeName ="datetime2")]
         public DateTime CheckIn { get; set; }
-        [Column(TypeName ="Checkout")]
+        [Column(TypeName ="datetime2")]
         public DateTime Checkout { get; set; }
     }
 
     //enum for dropdown list
     public enum Type
     {
+        
         Car,
         Motorcycle,
         Boat,
