@@ -1,4 +1,4 @@
-﻿@model IPagedList<ParkedVehicle>
+﻿@model IPagedList<ParkedVehicleVM>
 
 @{
     ViewBag.Title = "Index";
@@ -8,14 +8,6 @@
 
 <div class="row">
     <button class="btn btn-default">@Html.ActionLink("Park New", "Create")</button>
-    @*<div class="form-group pull-right input-group">
-        <form method="get">
-            <input type="search" name="searchTerm" class="form-control" placeholder="Search for..." />
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-info">Search</button>
-            </span>
-        </form>
-    </div>*@
 </div>
  <br />
 <div class="jumbotron">
@@ -25,14 +17,14 @@
             <p>
                 Search By:<br />
 
-                @Html.RadioButton("Search By", "RegistrationNumber")<text>RegistrationNumber&nbsp;</text>
-                @Html.RadioButton("Search By", "Type")<text>Type&nbsp;</text>
-                @Html.RadioButton("Search By", "Brand")<text>Brand&nbsp;</text>
-                @Html.RadioButton("Search By", "Model")<text>Model&nbsp;</text>
-                @Html.RadioButton("Search By", "Color")<text>Color&nbsp;</text>
-                @Html.RadioButton("Search By", "NumberOfWheels")<text>NumberOfWheels&nbsp;</text>
-                @Html.RadioButton("Search By", "CheckIn")<text>CheckIn&nbsp;</text>
-                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search for..." })<input type="submit" value="Search" class="btn btn-info" />
+                @Html.RadioButton("SearchBy", "RegistrationNumber", true)<text>RegistrationNumber&nbsp;</text>
+                @Html.RadioButton("SearchBy", "Type")<text>Type&nbsp;</text>
+                @Html.RadioButton("SearchBy", "Brand")<text>Brand&nbsp;</text>
+                @Html.RadioButton("SearchBy", "Model")<text>Model&nbsp;</text>
+                @Html.RadioButton("SearchBy", "Color")<text>Color&nbsp;</text>
+                @Html.RadioButton("SearchBy", "NumberOfWheels")<text>NumberOfWheels&nbsp;</text>
+                @Html.RadioButton("SearchBy", "CheckIn")<text>CheckIn&nbsp;</text>
+                @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Search for..." })<input type="submit" value="Search" class="btn btn-info" />
             </p>
         }
     <br />
@@ -40,10 +32,10 @@
 <table class="table table-hover table-responsive table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().Type)
+            @Html.ActionLink("Type", "Index", new { sortBy = ViewBag.SortTypeParameter, searchBy= Request.QueryString["searchBy"], search= Request["search"]})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().RegistrationNumber)
+            @Html.ActionLink("RegistrationNumber", "Index", new { sortBy = ViewBag.SortRegistrationNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Color)
@@ -62,9 +54,16 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @if (Model.Count() == 0)
     {
+        <tr>
+            <td colspan="7">We are sorry No rows match search critiria. Please try again.</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
@@ -95,10 +94,11 @@
             </td>
         </tr>
     }
-
+    }
 </table>
 <div class="row">
     <div class="text-center">
-        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page}))    
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"]}),
+       new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true})    
      </div>
 </div>

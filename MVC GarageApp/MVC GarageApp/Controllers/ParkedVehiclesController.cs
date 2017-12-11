@@ -9,8 +9,9 @@ using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
 using MVC_GarageApp.Models;
 using PagedList;
-using PagedList.Mvc;              
- 
+using PagedList.Mvc;
+using MVC_GarageApp.Models.ViewModel;
+
 namespace MVC_GarageApp.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -18,46 +19,58 @@ namespace MVC_GarageApp.Controllers
         private VehicleContext db = new VehicleContext();
 
         // GET: ParkedVehicles
-        //Adding a search term to the index
-        public ActionResult Index(int? page, string searchBy, string search)     //,string searchTerm = null
+        public ActionResult Index(int? page, string searchBy, string search, string sortBy)     
         {
+            ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
+            ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
+
+            var parkeraVehicles = db.ParkeraVehicles.AsQueryable();
             if (searchBy == "RegistrationNumber")
             {
-                return View(db.ParkeraVehicles.Where(x => x.RegistrationNumber == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.RegistrationNumber == search || search == null);
             }
             else if (searchBy == "CheckIn")
             {
-                return View(db.ParkeraVehicles.Where(x => x.CheckIn.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.CheckIn.ToString() == search || search == null);
             }
             else if (searchBy == "Type")
             {
-                return View(db.ParkeraVehicles.Where(x => x.Type.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString() == search || search == null);
             }
             else if (searchBy == "Brand")
             {
-                return View(db.ParkeraVehicles.Where(x => x.Brand == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.Brand == search || search == null);
             }
             else if (searchBy == "Model")
             {
-                return View(db.ParkeraVehicles.Where(x => x.Model == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.Model == search || search == null);
             }
             else if (searchBy == "NumberOfWheels")
             {
-                return View(db.ParkeraVehicles.Where(x => x.Type.ToString() == search || search == null).ToList().ToPagedList(page ?? 1, 3));
+                parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString() == search || search == null);
             }
             else
             {
-                return View(db.ParkeraVehicles.Where(x => x.RegistrationNumber.StartsWith(search) || search == null).ToList().ToPagedList(page ?? 1, 2));
-
+                parkeraVehicles = parkeraVehicles.Where(x => x.RegistrationNumber.StartsWith(search) || search == null);
             }
 
+            switch (sortBy)
+            {
+                case "Type desc":
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Type);
+                    break;
+                case "RegistrationNumber desc":
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.RegistrationNumber);
+                    break;
+                case "RegistationNumber":
+                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.RegistrationNumber);
+                    break;
+                default:
+                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.Type);
+                    break;
+            }
 
-
-
-
-            //var model = db.ParkeraVehicles.Where
-            //    (r => searchTerm == null || r.Brand.StartsWith(searchTerm)).ToList().ToPagedList(page ?? 1, 3);
-            //return View(model);
+            return View(parkeraVehicles.ToList().ToPagedList(page ?? 1, 2));
         }
         //New ActionResult to add a new view
         public ActionResult Car(int? page)
@@ -166,10 +179,13 @@ namespace MVC_GarageApp.Controllers
             {
                 return HttpNotFound();
             }
+            //ReceiptVM receipt = new ReceiptVM(parkedVehicle);
+            //receipt.Checkout = DateTime.Now;
+
             return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Delete/5
+        // POST: ParkedVehicles/Delete/5"Receipt",receipt
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
