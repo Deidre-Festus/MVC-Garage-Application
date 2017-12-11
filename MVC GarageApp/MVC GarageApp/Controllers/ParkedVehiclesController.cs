@@ -24,7 +24,7 @@ namespace MVC_GarageApp.Controllers
             ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
             ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
 
-            var parkeraVehicles = db.ParkeraVehicles.AsQueryable();
+            var parkeraVehicles = db.Vehicles.AsQueryable();
             if (searchBy == "RegistrationNumber")
             {
                 parkeraVehicles = parkeraVehicles.Where(x => x.RegistrationNumber == search || search == null);
@@ -70,27 +70,27 @@ namespace MVC_GarageApp.Controllers
                     break;
             }
 
-            return View(parkeraVehicles.ToList().ToPagedList(page ?? 1, 2));
+            return View(parkeraVehicles.OrderByDescending(x=> x.Id).ToPagedList(page ?? 1, 5));
         }
         //New ActionResult to add a new view
         public ActionResult Car(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Car).ToList().ToPagedList(page ?? 1, 3);
+            var model = db.Vehicles.Where(i => i.Type == Models.Type.Car).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
         public ActionResult Motorcycle(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Motorcycle).ToList().ToPagedList(page ?? 1, 3);
+            var model = db.Vehicles.Where(i => i.Type == Models.Type.Motorcycle).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
         public ActionResult Boat(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Boat).ToList().ToPagedList(page ?? 1, 3);
+            var model = db.Vehicles.Where(i => i.Type == Models.Type.Boat).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
         public ActionResult Airplane(int? page)
         {
-            var model = db.ParkeraVehicles.Where(i => i.Type == Models.Type.Airplane).ToList().ToPagedList(page ?? 1, 3);
+            var model = db.Vehicles.Where(i => i.Type == Models.Type.Airplane).ToList().ToPagedList(page ?? 1, 3);
             return View(model);
         }
 
@@ -102,7 +102,7 @@ namespace MVC_GarageApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkeraVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.Vehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -127,7 +127,7 @@ namespace MVC_GarageApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ParkeraVehicles.Add(parkedVehicle);
+                db.Vehicles.Add(parkedVehicle);
                 parkedVehicle.CheckIn = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -143,7 +143,7 @@ namespace MVC_GarageApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkeraVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.Vehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -174,7 +174,7 @@ namespace MVC_GarageApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkeraVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.Vehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -190,8 +190,8 @@ namespace MVC_GarageApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ParkedVehicle parkedVehicle = db.ParkeraVehicles.Find(id);
-            db.ParkeraVehicles.Remove(parkedVehicle);
+            ParkedVehicle parkedVehicle = db.Vehicles.Find(id);
+            db.Vehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

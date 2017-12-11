@@ -10,6 +10,6 @@ namespace MVC_GarageApp.DataAccessLayer
     {
         public VehicleContext() : base ("MVC-Garage") {}
 
-        public DbSet<Models.ParkedVehicle> ParkeraVehicles { get; set; }
+        public DbSet<Models.ParkedVehicle> Vehicles { get; set; }
     }
 }
