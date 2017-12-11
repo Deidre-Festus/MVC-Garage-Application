@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MVC_GarageApp.Models.ParkedVehicle>
+
+@{
+    ViewBag.Title = "Overview";
+}
+
+<h2>Overview</h2>
+
+<p>
+    @Html.ActionLink("Park a new vehicle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colour)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colour)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Check Out", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,90 @@
+﻿@model IPagedList<ParkedVehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Garage</h2>
+
+<div class="row">
+    <button class="btn btn-default">@Html.ActionLink("Park New", "Create")</button>
+    <div class="form-group pull-right input-group">
+        <form method="get">
+            <input type="search" name="searchTerm" class="form-control" placeholder="Search for..." />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-info">Search</button>
+            </span>
+        </form>
+    </div>
+</div>
+@*@using (Ajax.BeginForm(new AjaxOptions
+    {
+        HttpMethod = "get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "GarageList"
+    }))*@
+<table class="table table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().RegistrationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NumberOfWheels)
+        </th>
+        <th>
+           @Html.DisplayNameFor(model => model.First().CheckIn) 
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfWheels)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+                
+            </td>
+            <td>
+                <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+                <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+                <button class="btn btn-default">@Html.ActionLink("Unpark", "Delete", new { id = item.Id })</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="row">
+    <div class="text-center">
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page}))    
+     </div>
+</div>
