@@ -58,30 +58,30 @@ namespace MVC_GarageApp.Migrations
             //        NumberOfWheels = 6,
             //    });
 
-            //extend the database to 100
+            ////extend the database to 100
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
                          Type = Models.Type.Car,
-                         RegistrationNumber = "CAR00"+i.ToString(),
+                         RegistrationNumber = "CAR00" + i.ToString(),
                          Color = "White",
                          Brand = "Mercedes",
                          Model = "2010",
                          NumberOfWheels = 4,
-                     });                
-              }
+                     });
+            }
 
-            for (int i = 0; i <10 ; i++)
+            for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
                          Type = Models.Type.Car,
-                         RegistrationNumber = "JPL0" + i.ToString()+"6",
+                         RegistrationNumber = "JPL0" + i.ToString() + "6",
                          Color = "Red",
                          Brand = "Ferrari",
                          Model = "2016",
@@ -91,12 +91,12 @@ namespace MVC_GarageApp.Migrations
 
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
                          Type = Models.Type.Boat,
-                         RegistrationNumber = "BOA" + i.ToString()+"82",
+                         RegistrationNumber = "BOA" + i.ToString() + "82",
                          Color = "Blue",
                          Brand = "Yamaha",
                          Model = "2010",
@@ -105,7 +105,7 @@ namespace MVC_GarageApp.Migrations
             }
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
@@ -119,12 +119,12 @@ namespace MVC_GarageApp.Migrations
             }
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
                          Type = Models.Type.Airplane,
-                         RegistrationNumber = "ÄPÅ" + i.ToString()+"47",
+                         RegistrationNumber = "ÄPÅ" + i.ToString() + "47",
                          Color = "White",
                          Brand = "Airbus",
                          Model = "2009",
@@ -133,7 +133,7 @@ namespace MVC_GarageApp.Migrations
             }
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
@@ -147,7 +147,7 @@ namespace MVC_GarageApp.Migrations
             }
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
@@ -161,12 +161,12 @@ namespace MVC_GarageApp.Migrations
             }
             for (int i = 0; i < 10; i++)
             {
-                context.ParkeraVehicles.AddOrUpdate(r => r.RegistrationNumber,
+                context.Vehicles.AddOrUpdate(r => r.RegistrationNumber,
 
                      new ParkedVehicle
                      {
                          Type = Models.Type.Motorcycle,
-                         RegistrationNumber = "JOI" + i.ToString()+"65",
+                         RegistrationNumber = "JOI" + i.ToString() + "65",
                          Color = "Silver",
                          Brand = "Chopper",
                          Model = "2014",
