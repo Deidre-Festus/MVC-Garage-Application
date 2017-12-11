@@ -142,12 +142,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712111048324_Update.cs" />
-    <Compile Include="Migrations\201712111048324_Update.Designer.cs">
-      <DependentUpon>201712111048324_Update.cs</DependentUpon>
+    <Compile Include="Migrations\201712111215153_init7.cs" />
+    <Compile Include="Migrations\201712111215153_init7.Designer.cs">
+      <DependentUpon>201712111215153_init7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
+    <Compile Include="Models\ViewModel\ParkedVehicleVM.cs" />
+    <Compile Include="Models\ViewModel\ReceiptVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\MaxWordsAttribute.cs" />
   </ItemGroup>
@@ -159,15 +161,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\airplane.jpg" />
-    <Content Include="Images\boat.jpg" />
-    <Content Include="Images\bus.jpg" />
-    <Content Include="Images\car.jpg" />
-    <Content Include="Images\minibus.jpg" />
+    <Content Include="img\multi-storey-car-park-2705368_1280.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\JavaScriptVehicle.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -215,8 +214,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712111048324_Update.resx">
-      <DependentUpon>201712111048324_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712111215153_init7.resx">
+      <DependentUpon>201712111215153_init7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
