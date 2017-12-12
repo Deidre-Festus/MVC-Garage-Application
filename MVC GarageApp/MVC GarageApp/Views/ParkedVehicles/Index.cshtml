@@ -7,28 +7,28 @@
 <h2>Garage</h2>
 
 <div class="row">
-    <button class="btn btn-default">@Html.ActionLink("Park New", "Create")</button>
+    <button class="btn btn-default" id="btnSubmit">@Html.ActionLink("Park New Vehicle", "Create")</button>
 </div>
  <br />
-<div class="jumbotron">
-    
+    <fieldset class="row">
+
         @using (Html.BeginForm("Index", "ParkedVehicles", FormMethod.Get))
         {
             <p>
-                Search By:<br />
-
-                @Html.RadioButton("SearchBy", "RegistrationNumber")<text>RegistrationNumber&nbsp;</text>
+                <cite>Search By:</cite><br />
+                @Html.RadioButton("SearchBy", "RegistrationNumber", true)<text>RegistrationNumber&nbsp;</text>
                 @Html.RadioButton("SearchBy", "Type")<text>Type&nbsp;</text>
-                @Html.RadioButton("SearchBy", "Brand")<text>Brand&nbsp;</text>
-                @Html.RadioButton("SearchBy", "Model")<text>Model&nbsp;</text>
+                @*@Html.RadioButton("SearchBy", "Brand")<text>Brand&nbsp;</text>*@
+                @*@Html.RadioButton("SearchBy", "Model")<text>Model&nbsp;</text>*@
                 @Html.RadioButton("SearchBy", "Color")<text>Color&nbsp;</text>
-                @Html.RadioButton("SearchBy", "NumberOfWheels")<text>NumberOfWheels&nbsp;</text>
-                @Html.RadioButton("SearchBy", "CheckIn")<text>CheckIn&nbsp;</text>
-                @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Search for..." })<input type="submit" value="Search" class="btn btn-info" />
+                @*@Html.RadioButton("SearchBy", "NumberOfWheels")<text>NumberOfWheels&nbsp;</text>*@
+                @Html.RadioButton("SearchBy", "CheckIn")<text>CheckIn&nbsp;</text><br />
+                @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Search for..." })<br />
+                <input type="submit" value="Search" class="btn btn-default" id="btnSearch"/>
             </p>
         }
-    <br />
-</div>
+    </fieldset>
+ 
 <table class="table table-hover table-responsive table-striped">
     <tr>
         <th>
@@ -40,19 +40,19 @@
         <th>
             @Html.DisplayNameFor(model => model.First().Color)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.First().Brand)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.First().Model)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.First().NumberOfWheels)
-        </th>
+        </th>*@
         <th>
            @Html.DisplayNameFor(model => model.First().CheckIn) 
         </th>
-        <th></th>
+        <th>Action</th>
     </tr>
     @if (Model.Count() == 0)
     {
@@ -74,7 +74,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Brand)
             </td>
             <td>
@@ -82,15 +82,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NumberOfWheels)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CheckIn)
                 
             </td>
             <td>
-                <button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
-                <button class="btn btn-default">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
-                <button class="btn btn-default">@Html.ActionLink("Unpark", "Delete", new { id = item.Id })</button>
+                @*<button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>*@
+                <button class="btn btn-default" id="btnDetails">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+                <button class="btn btn-default" id="btnUnpark">@Html.ActionLink("Unpark", "Delete", new { id = item.Id })</button>
             </td>
         </tr>
     }

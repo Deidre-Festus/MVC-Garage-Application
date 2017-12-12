@@ -2,40 +2,79 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>EXECUTIVE PARKING</h1>
-    <p class="lead">Secure parking for your most prized possession whenever you need it.  <br />
-    Open 24 hours a day, 365 days a year!</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-3">
-        <h2>Cars</h2>        
-        <img class="imageToRotate" src="~/Images/car.jpg" alt ="car image" width="280" height ="165"/>
-        @*<p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>*@        
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
+    <div class="container">
+        <img src="~/img/multi-storey-car-park-2705368_1280.jpg" alt="Garage" style="width:104%;">
+        <div class="content">
+            <h1>Garage</h1>
+            <p>Welcome to our garage. In our garage you can park different kinds of vehicles. We have the lowest prices and the best service.</p>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Busses</h2>
-        <img src="~/Images/minibus.jpg" width="280" height="165" />
-        @*<p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>*@
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
-    </div>
-    <div class="col-md-3">
-        <h2>Boats</h2>
-        <img src="~/Images/boat.jpg" width="280" height="165" />
-        @*<p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>*@
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
-    </div>
-    <div class="col-md-3">
-        <h2>Airplanes</h2>
-        <img src="~/Images/airplane.jpg" width="280" height="165" />
-        @*<p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>*@
-        @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
-    </div>
+
 </div>
+<div class="row"><br /></div> 
+
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="~/img/auto-2934064_1280.jpg" alt="Car" width="280" height ="165">
+                <div class="caption">
+                    <h3>Park a car</h3>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
+                     </p>
+                    <p>
+                      
+                    <button class="btn btn-default" >@Html.ActionLink("Information","Information","ParkedVehicles")</button> 
+                    </p>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="~/img/rome-2261190_1280.jpg" alt="Buss" width="280" height ="165">
+                <div class="caption"> 
+                    <h3>Park a bus</h3>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <p>
+                     
+                    <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="~/img/sailboat-459794_1280.jpg" alt="Boat" width="280" height ="165">
+                <div class="caption">
+                    <h3>Park a boat</h3>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <p>
+                      
+                    <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="~/img/plane-841441_1280.jpg" alt="Airplane" width="280" height ="165">
+                <div class="caption">
+                    <h3>Park an airplane</h3>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <p>
+                         
+                        <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>

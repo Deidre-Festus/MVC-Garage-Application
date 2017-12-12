@@ -1,12 +1,8 @@
 ﻿using MVC_GarageApp.Utility;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace MVC_GarageApp.Models
 {
@@ -15,6 +11,7 @@ namespace MVC_GarageApp.Models
     /// </summary>
     public class ParkedVehicle
     {
+        private int pricePerHour = 10;
         public int Id { get; set; }
         [Required(ErrorMessage ="You should choose one of the list")]
         [ScaffoldColumn(false)]
@@ -50,6 +47,17 @@ namespace MVC_GarageApp.Models
         [Column(TypeName = "datetime2")]
         [DisplayName("Time Checked Out")]
         public DateTime CheckOut { get; set; }
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        [DisplayName("Price Per Hour")]
+        public int PricePerHour { get { return 50; } }
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm\\:ss}")]
+        [DisplayName("Total parking time")]
+        public TimeSpan TotalTime { get { return (CheckOut - CheckIn); } }
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        [DisplayName("Price:")]
+        public double Sum { get { return TotalTime.TotalHours * PricePerHour; } }
 
     }
 
