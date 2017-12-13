@@ -45,7 +45,7 @@ namespace MVC_GarageApp.Controllers
             }
             //else if (searchBy == "NumberOfWheels")
             //{
-            //    parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString() == search || search == null);
+            //    parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString() == search || search == null);        
             //}
             else
             {
