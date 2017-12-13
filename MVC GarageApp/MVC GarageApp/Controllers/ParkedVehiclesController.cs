@@ -15,10 +15,10 @@ namespace MVC_GarageApp.Controllers
         private VehicleContext db = new VehicleContext();
 
         // GET: ParkedVehicles
-        [OutputCache(Duration = 10)]
+        //[OutputCache(Duration = 10)]
         public ActionResult Index(int? page, string searchBy, string search, string sortBy)     
         {
-            System.Threading.Thread.Sleep(1000);
+            //System.Threading.Thread.Sleep(1000);
             ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
             ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
 
