@@ -3,7 +3,7 @@ namespace MVC_GarageApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init7 : DbMigration
+    public partial class init11 : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +19,7 @@ namespace MVC_GarageApp.Migrations
                         Model = c.String(nullable: false, maxLength: 20),
                         NumberOfWheels = c.Int(nullable: false),
                         CheckIn = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        Checkout = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        CheckOut = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                     })
                 .PrimaryKey(t => t.Id);
             

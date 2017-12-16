@@ -7,13 +7,13 @@ namespace MVC_GarageApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class init7 : IMigrationMetadata
+    public sealed partial class init11 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init7));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init11));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712111215153_init7"; }
+            get { return "201712161956299_init11"; }
         }
         
         string IMigrationMetadata.Source
