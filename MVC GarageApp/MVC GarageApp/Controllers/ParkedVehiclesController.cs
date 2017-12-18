@@ -66,7 +66,7 @@ namespace MVC_GarageApp.Controllers
                     parkeraVehicles = parkeraVehicles.OrderBy(x => x.RegistrationNumber);
                     break;
                 default:
-                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.Type);
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Id);
                     break;
             }
 
@@ -112,9 +112,7 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles/Create
         public ActionResult Create()
-        {
-
-            
+        {            
             return View();
         }
 
@@ -180,7 +178,7 @@ namespace MVC_GarageApp.Controllers
                 return HttpNotFound();
             }
             //ReceiptVM receipt = new ReceiptVM(parkedVehicle);
-            //receipt.Checkout = DateTime.Now;
+            parkedVehicle.CheckOut = DateTime.Now;
 
             return View(parkedVehicle);
         }
