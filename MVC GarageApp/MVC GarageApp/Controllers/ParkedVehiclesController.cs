@@ -165,7 +165,7 @@ namespace MVC_GarageApp.Controllers
              return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Delete/5"Receipt",receipt
+        // POST: ParkedVehicles/Delete/5"Receipt",receipt 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
