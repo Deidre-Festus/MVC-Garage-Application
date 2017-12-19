@@ -71,28 +71,7 @@ namespace MVC_GarageApp.Controllers
 
             return View(parkeraVehicles.ToPagedList(page ?? 1, 7));
         }
-        //New ActionResult to add a new view
-        //public ActionResult Car(int? page)
-        //{
-        //    var model = db.Vehicles.Where(i => i.Type == Models.Type.Car).ToList().ToPagedList(page ?? 1, 3);
-        //    return View(model);
-        //}
-        //public ActionResult Motorcycle(int? page)
-        //{
-        //    var model = db.Vehicles.Where(i => i.Type == Models.Type.Motorcycle).ToList().ToPagedList(page ?? 1, 3);
-        //    return View(model);
-        //}
-        //public ActionResult Boat(int? page)
-        //{
-        //    var model = db.Vehicles.Where(i => i.Type == Models.Type.Boat).ToList().ToPagedList(page ?? 1, 3);
-        //    return View(model);
-        //}
-        //public ActionResult Airplane(int? page)
-        //{
-        //    var model = db.Vehicles.Where(i => i.Type == Models.Type.Airplane).ToList().ToPagedList(page ?? 1, 3);
-        //    return View(model);
-        //}
-
+       
             public ActionResult Information()
         {
 
@@ -182,11 +161,8 @@ namespace MVC_GarageApp.Controllers
             {
                 return HttpNotFound();
             }
-            //ReceiptVM receipt = new ReceiptVM(parkedVehicle);
-            //receipt.Checkout = DateTime.Now;
-
             parkedVehicle.CheckOut = DateTime.Now;
-            return View(parkedVehicle);
+             return View(parkedVehicle);
         }
 
         // POST: ParkedVehicles/Delete/5"Receipt",receipt
@@ -197,7 +173,14 @@ namespace MVC_GarageApp.Controllers
             ParkedVehicle parkedVehicle = db.Vehicles.Find(id);
             db.Vehicles.Remove(parkedVehicle);
             db.SaveChanges();
+            /////////////////////////////////////
+            TempData.Keep();
             return RedirectToAction("Index");
+        }
+        public ActionResult Receipt()
+        {
+            TempData.Keep();
+                return View();
         }
 
         protected override void Dispose(bool disposing)

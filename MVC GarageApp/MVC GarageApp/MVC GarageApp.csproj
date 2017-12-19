@@ -143,15 +143,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712111215153_init7.cs" />
-    <Compile Include="Migrations\201712111215153_init7.Designer.cs">
-      <DependentUpon>201712111215153_init7.cs</DependentUpon>
+    <Compile Include="Migrations\201712162058034_init1.cs" />
+    <Compile Include="Migrations\201712162058034_init1.Designer.cs">
+      <DependentUpon>201712162058034_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
     <Compile Include="Models\ViewModel\ParkedVehicleVM.cs" />
-    <Compile Include="Models\ViewModel\ReceiptVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\MaxWordsAttribute.cs" />
   </ItemGroup>
@@ -207,10 +206,6 @@
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
-    <Content Include="Views\ParkedVehicles\Car.cshtml" />
-    <Content Include="Views\ParkedVehicles\Boat.cshtml" />
-    <Content Include="Views\ParkedVehicles\Airplane.cshtml" />
-    <Content Include="Views\ParkedVehicles\Motorcycle.cshtml" />
     <Content Include="Views\ParkedVehicles\Information.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -224,8 +219,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712111215153_init7.resx">
-      <DependentUpon>201712111215153_init7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712162058034_init1.resx">
+      <DependentUpon>201712162058034_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
