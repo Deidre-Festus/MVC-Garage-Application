@@ -69,7 +69,7 @@ namespace MVC_GarageApp.Controllers
                     break;
             }
 
-            return View(parkeraVehicles.ToPagedList(page ?? 1, 7));
+            return View(parkeraVehicles.OrderByDescending(x => x.CheckIn).ToPagedList(page ?? 1, 7));
         }
        
             public ActionResult Information()
