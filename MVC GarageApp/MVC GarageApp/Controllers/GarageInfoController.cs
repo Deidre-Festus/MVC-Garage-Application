@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using MVC_GarageApp.DataAccessLayer;
 using MVC_GarageApp.Models;
@@ -10,64 +12,56 @@ using PagedList;
 
 namespace MVC_GarageApp.Controllers
 {
-    public class ParkedVehiclesController : Controller
+    public class GarageInfoController : Controller
     {
         private VehicleContext db = new VehicleContext();
 
-        // GET: ParkedVehicles
-        public ActionResult Index(int? page, string searchBy, string search, string sortBy)     
+        // GET: GarageInfo
+        public ActionResult Index(int? page, string searchBy, string search, string sortBy)
         {
-            ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
-            ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
+            ViewBag.SortOwnerParameter = string.IsNullOrEmpty(sortBy) ? "Owner desc" : "";
+            ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "registrationNumber";
 
-            var parkeraVehicles = db.Vehicles.AsQueryable();
+            var garageInfo = db.Vehicles.AsQueryable();
             if (searchBy == "RegistrationNumber")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.RegistrationNumber.Contains(search) || search == null);
+                garageInfo = garageInfo.Where(x => x.RegistrationNumber.Contains(search) || search == null);
             }
             else if (searchBy == "CheckIn")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.CheckIn.ToString().Contains(search) || search == null);
+                garageInfo = garageInfo.Where(x => x.CheckIn.ToString().Contains(search) || search == null);  
             }
             else if (searchBy == "Type")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString().Contains(search)  || search == null);
+                garageInfo = garageInfo.Where(x => x.Type.ToString().Contains(search) || search == null);
             }
-            else if (searchBy == "Color")
+            else if (searchBy == "Owner")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.Color.Contains(search) || search == null);
+                garageInfo = garageInfo.Where(x => x.Members.Owner.Contains(search) || search == null);
             }
             else
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.RegistrationNumber.StartsWith(search) || search == null);
+                garageInfo = garageInfo.Where(x => x.RegistrationNumber.StartsWith(search) || search == null);
             }
-
             switch (sortBy)
             {
-                case "Type desc":
-                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Type);
+                case "Owner desc":
+                    garageInfo = garageInfo.OrderByDescending(x => x.Type);
                     break;
                 case "RegistrationNumber":
-                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.RegistrationNumber);
+                    garageInfo = garageInfo.OrderBy(x => x.RegistrationNumber);
                     break;
                 case "RegistrationNumber desc":
-                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.RegistrationNumber);
+                    garageInfo = garageInfo.OrderByDescending(x => x.RegistrationNumber);
                     break;
                 default:
-                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.Type);
-                    //parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Id);
+                    garageInfo = garageInfo.OrderBy(x => x.Type);
                     break;
             }
-
-            return View(parkeraVehicles.OrderByDescending(x => x.CheckIn).ToPagedList(page ?? 1, 5));
-        }
-            public ActionResult Information()
-        {
-
-            return View();
+            return View(garageInfo.OrderByDescending(x => x.CheckIn).ToPagedList(page ?? 1, 7));
         }
 
-        // GET: ParkedVehicles/Details/5
+        // GET: GarageInfo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -82,23 +76,22 @@ namespace MVC_GarageApp.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Create
+        // GET: GarageInfo/Create
         public ActionResult Create()
-        {           
+        {
             return View();
         }
 
-        // POST: ParkedVehicles/Create
+        // POST: GarageInfo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
                 db.Vehicles.Add(parkedVehicle);
-                parkedVehicle.CheckIn = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -106,7 +99,7 @@ namespace MVC_GarageApp.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Edit/5       
+        // GET: GarageInfo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -121,12 +114,12 @@ namespace MVC_GarageApp.Controllers
             return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Edit/5
+        // POST: GarageInfo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -137,7 +130,7 @@ namespace MVC_GarageApp.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Delete/5
+        // GET: GarageInfo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -149,11 +142,10 @@ namespace MVC_GarageApp.Controllers
             {
                 return HttpNotFound();
             }
-            parkedVehicle.CheckOut = DateTime.Now;
             return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Delete/5"Receipt",receipt
+        // POST: GarageInfo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

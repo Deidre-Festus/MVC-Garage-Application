@@ -16,15 +16,12 @@
         {
             <p>
                 <cite>Search By:</cite><br />
-                @Html.RadioButton("SearchBy", "RegistrationNumber", true)<text>RegistrationNumber&nbsp;</text>
+                @Html.RadioButton("SearchBy", "RegistrationNumber", true)<text>RegNr&nbsp;</text>
                 @Html.RadioButton("SearchBy", "Type")<text>Type&nbsp;</text>
-                @*@Html.RadioButton("SearchBy", "Brand")<text>Brand&nbsp;</text>*@
-                @*@Html.RadioButton("SearchBy", "Model")<text>Model&nbsp;</text>*@
                 @Html.RadioButton("SearchBy", "Color")<text>Color&nbsp;</text>
-                @*@Html.RadioButton("SearchBy", "NumberOfWheels")<text>NumberOfWheels&nbsp;</text>*@
                 @Html.RadioButton("SearchBy", "CheckIn")<text>CheckIn&nbsp;</text><br />
                 @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Search for..." })<br />
-                <input type="submit" value="Search" class="btn btn-default" id="btnSearch"/>
+                <input type="submit" value="Search" class="btn btn-default" id="btnSearch" />
             </p>
         }
     </fieldset>
@@ -35,20 +32,11 @@
             @Html.ActionLink("Type", "Index", new { sortBy = ViewBag.SortTypeParameter, searchBy= Request.QueryString["searchBy"], search= Request["search"]})
         </th>
         <th>
-            @Html.ActionLink("RegistrationNumber", "Index", new { sortBy = ViewBag.SortRegistrationNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
+            @Html.ActionLink("RegNr", "Index", new { sortBy = ViewBag.SortRegistrationNumberParameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Color)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.First().Brand)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.First().Model)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.First().NumberOfWheels)
-        </th>*@
         <th>
            @Html.DisplayNameFor(model => model.First().CheckIn) 
         </th>
@@ -74,22 +62,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfWheels)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CheckIn)
                 
             </td>
             <td>
-                @*<button class="btn btn-default">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>*@
-                <button class="btn btn-default" id="btnDetails">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+                 <button class="btn btn-default" id="btnDetails">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
                 <button class="btn btn-default" id="btnUnpark">@Html.ActionLink("Unpark", "Delete", new { id = item.Id })</button>
             </td>
         </tr>
