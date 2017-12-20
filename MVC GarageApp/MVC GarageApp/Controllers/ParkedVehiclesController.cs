@@ -8,6 +8,7 @@ using MVC_GarageApp.DataAccessLayer;
 using MVC_GarageApp.Models;
 using PagedList;
 
+
 namespace MVC_GarageApp.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -33,7 +34,7 @@ namespace MVC_GarageApp.Controllers
             }
             else if (searchBy == "Type")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString().Contains(search)  || search == null);
+                parkeraVehicles = parkeraVehicles.Where(x => x.VehicleType.ToString().Contains(search)  || search == null);
             }
             //else if (searchBy == "Brand")
             //{
@@ -55,7 +56,7 @@ namespace MVC_GarageApp.Controllers
             switch (sortBy)
             {
                 case "Type desc":
-                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Type);
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.VehicleTypeId);
                     break;
                 case "RegistrationNumber":
                     parkeraVehicles = parkeraVehicles.OrderBy(x => x.RegistrationNumber);
@@ -64,7 +65,7 @@ namespace MVC_GarageApp.Controllers
                     parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.RegistrationNumber);
                     break;
                 default:
-                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.Type);
+                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.VehicleTypeId);
                     //parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Id);
                     break;
             }
@@ -116,7 +117,10 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles/Create
         public ActionResult Create()
-        {           
+        {
+            ViewBag.MemberIdList = new SelectList(db.Members, "Id", "FName");
+            //ViewBag.OwnerList = new SelectList(db.Members, "Id", "Owner");
+            ViewBag.VehicleTypeIdList = new SelectList(db.Types, "Id", "VehTypeName");
             return View();
         }
 
@@ -125,7 +129,7 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,MemberId,VehicleTypeId,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +138,8 @@ namespace MVC_GarageApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.MemberIdList = new SelectList(db.Members, "Id", "MemberNr", parkedVehicle.MemberId);
+            ViewBag.VehicleTypeIdList = new SelectList(db.Types, "Id", "VehTypeName", parkedVehicle.VehicleType);
             return View(parkedVehicle);
             //return View(parkedVehicle);
         }
@@ -159,7 +164,7 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,VehicleTypeId,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {

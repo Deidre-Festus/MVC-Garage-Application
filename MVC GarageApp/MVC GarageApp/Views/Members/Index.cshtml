@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MVC_GarageApp.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Members</h2>
+
+
+<div class="row">
+    <button class="btn btn-default" id="btnSubmit">@Html.ActionLink("Create New", "Create")</button>
+</div>
+
+
+    @using (Html.BeginForm("Search", "Members", FormMethod.Get))
+    {
+        <p>
+            <cite>Search By:</cite><br />
+            @Html.RadioButton("SearchBy", "MembershipNumber")<text>Membership Number</text>
+            @Html.RadioButton("SearchBy", "LastName")<text>Last Name&nbsp;</text>
+            @Html.TextBox("search", null, new { @class = "form-control", placeholder = "Search for..." })<br />
+            <input type="submit" value="Search" class="btn btn-default" id="btnSearch" />            
+        </p>
+    }
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberNr)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="7">We are sorry No rows match search critiria. Please try again.</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberNr)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -11,13 +11,14 @@ namespace MVC_GarageApp.Models
     /// </summary>
     public class ParkedVehicle
     {
-        private int pricePerHour = 10;
+        //private int pricePerHour = 10;
+
         public int Id { get; set; }
-        [Required(ErrorMessage ="You should choose one of the list")]
-        [ScaffoldColumn(false)]
-        [DisplayFormat(NullDisplayText = "Undefined")]
-        [DisplayName("Vehicle Type")]
-        public Type Type { get; set; }
+        //[Required(ErrorMessage ="You should choose one of the list")]
+        //[ScaffoldColumn(false)]
+        //[DisplayFormat(NullDisplayText = "Undefined")]
+        //[DisplayName("Vehicle Type")]
+        //public int VehicleTypeId { get; set; }
         [Required(ErrorMessage ="Registration Number should include three letters and three numbers")]
         [StringLength(6)]
         [DisplayFormat(NullDisplayText = "Undefined")]
@@ -59,14 +60,27 @@ namespace MVC_GarageApp.Models
         [DisplayName("Price:")]
         public double Sum { get { return TotalTime.TotalHours * PricePerHour; } }
 
+        public int VehicleTypeId { get; set; }
+        public int MemberId { get; set; }
+
+
+        [ForeignKey("VehicleTypeId")]
+        public virtual VehicleType VehicleType { get; set; }
+
+        [ForeignKey("MemberId")]
+        public virtual Member Member { get; set; }
     }
 
+
+
+
+
     //enum for dropdown list
-    public enum Type
-    {
-        Car,
-        Motorcycle,
-        Boat,
-        Airplane
-    }
+    //public enum Type
+    //{
+    //    Car,
+    //    Motorcycle,
+    //    Boat,
+    //    Airplane
+    //}
 }

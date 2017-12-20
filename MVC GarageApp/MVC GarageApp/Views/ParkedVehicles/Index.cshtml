@@ -17,7 +17,7 @@
             <p>
                 <cite>Search By:</cite><br />
                 @Html.RadioButton("SearchBy", "RegistrationNumber", true)<text>RegistrationNumber&nbsp;</text>
-                @Html.RadioButton("SearchBy", "Type")<text>Type&nbsp;</text>
+                @Html.RadioButton("SearchBy", "VehicleType")<text>Type&nbsp;</text>
                 @*@Html.RadioButton("SearchBy", "Brand")<text>Brand&nbsp;</text>*@
                 @*@Html.RadioButton("SearchBy", "Model")<text>Model&nbsp;</text>*@
                 @Html.RadioButton("SearchBy", "Color")<text>Color&nbsp;</text>
@@ -66,7 +66,7 @@
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Type)
+                @Html.DisplayFor(modelItem => item.VehicleType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationNumber)
