@@ -166,6 +166,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\auto-2934064_1280.jpg" />
+    <Content Include="img\Avatar4.png" />
+    <Content Include="img\Avatar6.jpg" />
     <Content Include="img\bussing-1243924_1280.jpg" />
     <Content Include="img\garage-1837335_1280.jpg" />
     <Content Include="img\multi-storey-car-park-2705368_1280.jpg" />

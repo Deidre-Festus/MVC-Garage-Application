@@ -2,9 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
+<div class="row bgcolor">
     <div class="container">
-        <img src="~/img/multi-storey-car-park-2705368_1280.jpg" alt="Garage" style="width:104%;">
+        <img src="~/img/multi-storey-car-park-2705368_1280.jpg" alt="Garage" class="img">
         <div class="content">
             <h1>Garage</h1>
             <p>Welcome to our garage. In our garage you can park different kinds of vehicles. We have the lowest prices and the best service.</p>
@@ -12,68 +12,57 @@
     </div>
 
 </div>
-<div class="row"><br /></div> 
+<br />
 
     <div class="row">
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <img src="~/img/auto-2934064_1280.jpg" alt="Car" width="280" height ="165">
+                <img src="~/img/auto-2934064_1280.jpg" alt="Car">
                 <div class="caption">
                     <h3>Park a car</h3>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
                      </p>
-                    <p>
-                      
-                    <button class="btn btn-default" >@Html.ActionLink("Information","Information","ParkedVehicles")</button> 
-                    </p>
+                         @Html.ActionLink("Information", "Information", "ParkedVehicles", null, new { @class="btn btn-info"}) 
                 </div>
             </div>
         </div>
   
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <img src="~/img/rome-2261190_1280.jpg" alt="Buss" width="280" height ="165">
+                <img src="~/img/rome-2261190_1280.jpg" alt="Buss">
                 <div class="caption"> 
                     <h3>Park a bus</h3>
                     <p>
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
-                    <p>
-                     
-                    <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
-                    </p>
+                    @Html.ActionLink("Information", "Information", "ParkedVehicles", null, new { @class = "btn btn-info" })
                 </div>
             </div>
         </div>
  
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <img src="~/img/sailboat-459794_1280.jpg" alt="Boat" width="280" height ="165">
+                <img src="~/img/sailboat-459794_1280.jpg" alt="Boat">
                 <div class="caption">
                     <h3>Park a boat</h3>
                     <p>
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
-                    <p>
-                      
-                    <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
-                    </p>
+                    @Html.ActionLink("Information", "Information", "ParkedVehicles", null, new { @class = "btn btn-info" })
+                    
                 </div>
             </div>
         </div>
  
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <img src="~/img/plane-841441_1280.jpg" alt="Airplane" width="280" height ="165">
+                <img src="~/img/plane-841441_1280.jpg" alt="Airplane">
                 <div class="caption">
                     <h3>Park an airplane</h3>
                     <p>
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
-                    <p>
-                         
-                        <button class="btn btn-default">@Html.ActionLink("Information", "Information", "ParkedVehicles") </button>
-                    </p>
+                    @Html.ActionLink("Information", "Information", "ParkedVehicles", null, new { @class = "btn btn-info" })
                 </div>
             </div>
         </div>
