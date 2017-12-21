@@ -32,7 +32,13 @@ namespace MVC_GarageApp.Models
         [DisplayName("Member Nr")]
         public int MemberNr { get; set; }
 
-
+        public string Owner
+        {
+            get
+            {
+                return FName + " " + LName;
+            }
+        }
 
 
         public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }

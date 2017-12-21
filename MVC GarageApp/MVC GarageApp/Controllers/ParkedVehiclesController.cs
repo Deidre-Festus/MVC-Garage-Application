@@ -118,8 +118,7 @@ namespace MVC_GarageApp.Controllers
         // GET: ParkedVehicles/Create
         public ActionResult Create()
         {
-            ViewBag.MemberIdList = new SelectList(db.Members, "Id", "FName");
-            //ViewBag.OwnerList = new SelectList(db.Members, "Id", "Owner");
+            ViewBag.MemberIdList = new SelectList(db.Members, "Id", "Owner");
             ViewBag.VehicleTypeIdList = new SelectList(db.Types, "Id", "VehTypeName");
             return View();
         }

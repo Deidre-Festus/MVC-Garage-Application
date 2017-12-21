@@ -31,19 +31,19 @@ namespace MVC_GarageApp.Models.ViewModel
         [DisplayName("Time Checked Out")]
         public DateTime CheckOut { get; set; }
 
-        [Required]
-        [DisplayName("First Name")]
-        public string FName { get; set; }
-        [Required]
-        [DisplayName("Last Name")]
-        public string LName { get; set; }
+        //[Required]
+        //[DisplayName("First Name")]
+        //public string FName { get; set; }
+        //[Required]
+        //[DisplayName("Last Name")]
+        //public string LName { get; set; }
 
-        public string Owner
-        {
-            get
-            {
-                return FName + " " + LName;
-            }
-        }
+        //public string Owner
+        //{
+        //    get
+        //    {
+        //        return FName + " " + LName;
+        //    }
+        //}
     }
 }
