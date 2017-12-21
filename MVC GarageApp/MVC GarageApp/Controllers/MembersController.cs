@@ -59,10 +59,10 @@ namespace MVC_GarageApp.Controllers
                     members = members.OrderByDescending(x => x.MemberShip);
                     break;
                 default:
-                    members = members.OrderBy(x => x.FName);
+                    members = members.OrderByDescending(x => x.StartDate);
                     break;
             }
-            return View(members.OrderByDescending(x => x.StartDate).ToPagedList(page ?? 1, 5));
+            return View(members.ToPagedList(page ?? 1, 5));
         }
 
         // GET: Members/Details/5
@@ -96,6 +96,9 @@ namespace MVC_GarageApp.Controllers
             if (ModelState.IsValid)
             {
                 db.Members.Add(member);
+                member.StartDate = DateTime.Now;
+                db.SaveChanges();
+                member.MemberShip = member.Id;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -17,7 +17,7 @@ namespace MVC_GarageApp.Controllers
         // GET: ParkedVehicles
         public ActionResult Index(int? page, string searchBy, string search, string sortBy)     
         {
-            ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "Type desc" : "";
+            ViewBag.SortTypeParameter = string.IsNullOrEmpty(sortBy) ? "VehicleType desc" : "";
             ViewBag.SortRegistrationNumber = sortBy == "RegistrationNumber" ? "RegistrationNumber desc" : "RegistrationNumber";
 
             var parkeraVehicles = db.Vehicles.AsQueryable();
@@ -31,7 +31,7 @@ namespace MVC_GarageApp.Controllers
             }
             else if (searchBy == "Type")
             {
-                parkeraVehicles = parkeraVehicles.Where(x => x.Type.ToString().Contains(search)  || search == null);
+                parkeraVehicles = parkeraVehicles.Where(x => x.VehicleType.ToString().Contains(search)  || search == null);
             }
             else if (searchBy == "Color")
             {
@@ -44,8 +44,8 @@ namespace MVC_GarageApp.Controllers
 
             switch (sortBy)
             {
-                case "Type desc":
-                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Type);
+                case "VehicleType desc":
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.VehicleType);
                     break;
                 case "RegistrationNumber":
                     parkeraVehicles = parkeraVehicles.OrderBy(x => x.RegistrationNumber);
@@ -54,12 +54,11 @@ namespace MVC_GarageApp.Controllers
                     parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.RegistrationNumber);
                     break;
                 default:
-                    parkeraVehicles = parkeraVehicles.OrderBy(x => x.Type);
-                    //parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.Id);
+                    parkeraVehicles = parkeraVehicles.OrderByDescending(x => x.CheckIn);
                     break;
             }
 
-            return View(parkeraVehicles.OrderByDescending(x => x.CheckIn).ToPagedList(page ?? 1, 5));
+            return View(parkeraVehicles.ToPagedList(page ?? 1, 5));
         }
             public ActionResult Information()
         {
@@ -84,7 +83,9 @@ namespace MVC_GarageApp.Controllers
 
         // GET: ParkedVehicles/Create
         public ActionResult Create()
-        {           
+        {
+            ViewBag.MemberIdList = new SelectList(db.Members,"Id", "Owner");
+            ViewBag.VehicleTypeIdList = new SelectList(db.Types,"Id", "VehTypeName");
             return View();
         }
 
@@ -93,7 +94,7 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,MemberId,VehicleTypeId,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +103,8 @@ namespace MVC_GarageApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.MemberIdList = new SelectList(db.Members, "Id", "MemberNr", parkedVehicle.MemberId);
+            ViewBag.VehicleTypeIdList = new SelectList(db.Types, "Id", "VehTypeName", parkedVehicle.VehicleType);
             return View(parkedVehicle);
         }
 
@@ -126,11 +128,12 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,Color,Brand,Model,NumberOfWheels")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(parkedVehicle).State = EntityState.Modified;
+                //db.Entry(parkedVehicle).Property(x => x.to)
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

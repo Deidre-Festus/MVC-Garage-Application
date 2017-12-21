@@ -33,7 +33,7 @@ namespace MVC_GarageApp.Controllers
             }
             else if (searchBy == "Type")
             {
-                garageInfo = garageInfo.Where(x => x.Type.ToString().Contains(search) || search == null);
+                garageInfo = garageInfo.Where(x => x.VehicleType.ToString().Contains(search) || search == null);
             }
             else if (searchBy == "Owner")
             {
@@ -46,7 +46,7 @@ namespace MVC_GarageApp.Controllers
             switch (sortBy)
             {
                 case "Owner desc":
-                    garageInfo = garageInfo.OrderByDescending(x => x.Type);
+                    garageInfo = garageInfo.OrderByDescending(x => x.VehicleType);
                     break;
                 case "RegistrationNumber":
                     garageInfo = garageInfo.OrderBy(x => x.RegistrationNumber);
@@ -55,10 +55,10 @@ namespace MVC_GarageApp.Controllers
                     garageInfo = garageInfo.OrderByDescending(x => x.RegistrationNumber);
                     break;
                 default:
-                    garageInfo = garageInfo.OrderBy(x => x.Type);
+                    garageInfo = garageInfo.OrderByDescending(x => x.CheckIn);
                     break;
             }
-            return View(garageInfo.OrderByDescending(x => x.CheckIn).ToPagedList(page ?? 1, 7));
+            return View(garageInfo.ToPagedList(page ?? 1, 5));
         }
 
         // GET: GarageInfo/Details/5
@@ -87,11 +87,12 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
                 db.Vehicles.Add(parkedVehicle);
+                parkedVehicle.CheckIn = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -119,7 +120,7 @@ namespace MVC_GarageApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Type,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,Color,Brand,Model,NumberOfWheels,CheckIn,CheckOut")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {

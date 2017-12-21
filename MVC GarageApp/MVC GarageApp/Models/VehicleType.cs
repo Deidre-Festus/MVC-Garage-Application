@@ -10,16 +10,18 @@ namespace MVC_GarageApp.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("Vehicle Type")]
-        public Type Type { get; set; }
+        //[DisplayName("Vehicle Type")]
+        //public Type Type { get; set; }
+        public string VehTypeName { get; set; }
 
         public virtual ICollection<ParkedVehicle> parkedVehicles { get; set; }
     }
-    public enum Type
-    {
-        Car,
-        Motorcycle,
-        Boat,
-        Airplane
-    }
+    //public enum Type
+
+    //{
+    //    Car,
+    //    Motorcycle,
+    //    Boat,
+    //    Airplane
+    //}
 }

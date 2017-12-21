@@ -22,6 +22,11 @@ namespace MVC_GarageApp.Models
         [DisplayFormat(NullDisplayText ="Undefined")]
         public string LName { get; set; }
 
+        [Required]
+        [Column(TypeName = "datetime2")]
+        [DisplayName("Date of Birth YYYY-MM-DD")]
+        public DateTime DateOfBirth { get; set; }
+
         [Required(ErrorMessage ="Please enter the membership.")]
         [DisplayName("Member Ship")]
         [DisplayFormat(NullDisplayText ="Undefined")]

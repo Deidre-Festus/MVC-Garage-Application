@@ -14,5 +14,6 @@ namespace MVC_GarageApp.DataAccessLayer
         public DbSet<ParkedVehicle> Vehicles { get; set; }
 
         public DbSet<Member> Members { get; set; }
+        public DbSet<VehicleType> Types { get; set; }
     }
 }

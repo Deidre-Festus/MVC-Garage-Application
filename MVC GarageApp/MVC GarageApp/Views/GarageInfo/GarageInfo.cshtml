@@ -12,7 +12,7 @@
             <cite>Search By:</cite><br />
             @Html.RadioButton("SearchBy","Owner",true)<text>Owner&nbsp;</text>
             @Html.RadioButton("SearchBy", "RegistrationNumber")<text>RegNr&nbsp;</text>
-            @Html.RadioButton("SearchBy", "Type")<text>Type&nbsp;</text>
+            @Html.RadioButton("SearchBy", "VehicleType")<text>Type&nbsp;</text>
             @Html.RadioButton("SearchBy", "CheckIn")<text>CkeckIn&nbsp;</text>
             @Html.TextBox("search", null, new { @class="form-control", placeholder="Search for..."})<br />
             <input type="submit" value="Search" class="btn btn-default" id="btnSearch"/>
@@ -25,7 +25,7 @@
             @Html.DisplayNameFor(model => model.First().Members.Owner)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Type)
+            @Html.DisplayNameFor(model => model.First().VehicleType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().RegistrationNumber)
@@ -49,7 +49,7 @@
             @Html.DisplayFor(modelItem => item.Members.Owner)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Type)
+            @Html.DisplayFor(modelItem => item.VehicleType)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
