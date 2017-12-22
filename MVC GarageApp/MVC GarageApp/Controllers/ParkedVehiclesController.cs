@@ -133,7 +133,6 @@ namespace MVC_GarageApp.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(parkedVehicle).State = EntityState.Modified;
-                //db.Entry(parkedVehicle).Property(x => x.to)
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
