@@ -1,0 +1,74 @@
+﻿@model MVC_GarageApp.Models.Member
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Member</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberShip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberShip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pcode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit",null, new { id = Model.Id, @class = "btn btn-info" }) 
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
+</p>

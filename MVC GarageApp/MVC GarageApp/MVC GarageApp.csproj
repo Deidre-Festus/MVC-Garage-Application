@@ -136,18 +136,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GarageInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="DataAccessLayer\VehicleContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712161956299_init11.cs" />
-    <Compile Include="Migrations\201712161956299_init11.Designer.cs">
-      <DependentUpon>201712161956299_init11.cs</DependentUpon>
+ 
+    <Compile Include="Migrations\201712211139275_init7.cs" />
+    <Compile Include="Migrations\201712211139275_init7.Designer.cs">
+      <DependentUpon>201712211139275_init7.cs</DependentUpon>
+ 
+ 
+ 
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
+    <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\ViewModel\MemberVehType.cs" />
     <Compile Include="Models\ViewModel\ParkedVehicleVM.cs" />
     <Compile Include="Models\ViewModel\ReceiptVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,11 +170,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\auto-2934064_1280.jpg" />
+    <Content Include="img\Avatar4.png" />
+    <Content Include="img\Avatar6.jpg" />
+    <Content Include="img\bussing-1243924_1280.jpg" />
+    <Content Include="img\garage-1837335_1280.jpg" />
     <Content Include="img\multi-storey-car-park-2705368_1280.jpg" />
+    <Content Include="img\plane-841441_1280.jpg" />
+    <Content Include="img\rome-2261190_1280.jpg" />
+    <Content Include="img\sailboat-459794_1280.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\JavaScriptClient.js" />
     <Content Include="Scripts\JavaScriptVehicle.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -198,10 +216,18 @@
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
-    <Content Include="Views\ParkedVehicles\Car.cshtml" />
-    <Content Include="Views\ParkedVehicles\Boat.cshtml" />
-    <Content Include="Views\ParkedVehicles\Airplane.cshtml" />
-    <Content Include="Views\ParkedVehicles\Motorcycle.cshtml" />
+    <Content Include="Views\ParkedVehicles\Information.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\GarageInfo\Create.cshtml" />
+    <Content Include="Views\GarageInfo\Delete.cshtml" />
+    <Content Include="Views\GarageInfo\Details.cshtml" />
+    <Content Include="Views\GarageInfo\Edit.cshtml" />
+    <Content Include="Views\GarageInfo\Index.cshtml" />
+    <Content Include="Views\GarageInfo\GarageInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,8 +240,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712161956299_init11.resx">
-      <DependentUpon>201712161956299_init11.cs</DependentUpon>
+ 
+    <EmbeddedResource Include="Migrations\201712211139275_init7.resx">
+      <DependentUpon>201712211139275_init7.cs</DependentUpon>
+ 
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

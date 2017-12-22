@@ -1,28 +1,33 @@
-﻿@model MVC_GarageApp.Models.ParkedVehicle
+﻿@*@model MVC_GarageApp.Models.ParkedVehicle*@
+@model MVC_GarageApp.Models.ViewModel.MemberVehType
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ParkVehicle";
 }
 
-<h2>Create</h2>
-@DateTime.Now
+<h2>Park a vehicle</h2>
+@DateTime.Now.ToString("dddd, dd MMMM yyyy")<br /><br />
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ParkedVehicle</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.MemberId, (SelectList)ViewBag.MemberIdList, new { htmlAttributes = new { @class = "form-control", @placeholder = "Vehicle Type" } })
+                @Html.ValidationMessageFor(model => model.MemberId, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.VehicleTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.VehicleTypeId, (SelectList)ViewBag.VehicleTypeIdList, new { htmlAttributes = new { @class = "form-control", @placeholder = "Vehicle Type" } })
+                @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.RegistrationNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -65,8 +70,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" type="submit" value="Create">Park</button>
-                <button class="btn btn-default">@Html.ActionLink("Back to List", "Index")</button>
+                <button class="btn btn-info" type="submit" value="Create">Park</button>
+                 @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-info" })
              </div>
         </div>
     </div>

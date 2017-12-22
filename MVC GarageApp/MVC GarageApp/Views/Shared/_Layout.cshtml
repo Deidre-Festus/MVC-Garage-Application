@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Garage</title>
     @Styles.Render("~/Content/themes/base/css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -25,18 +25,8 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li> 
                     <li>@Html.ActionLink("Garage", "Index", "ParkedVehicles")</li>
-                    @*<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Garage</a>
-                        <div class="dropdown-menu">
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-heading">@Html.ActionLink("Vehicles", "Index", "ParkedVehicles")</li>
-                                 <li class="list-group-item">@Html.ActionLink("Car","Car","ParkedVehicles")</li>
-                                <li class="list-group-item">@Html.ActionLink("Motorcycle","Motorcycle", "ParkedVehicles")</li>
-                                <li class="list-group-item">@Html.ActionLink("Boat","Boat", "ParkedVehicles")</li>
-                                <li class="list-group-item">@Html.ActionLink("Airplane","Airplane", "ParkedVehicles")</li>
-                            </ul>
-                        </div>
-                    </li>*@
+                    <li>@Html.ActionLink("Members", "Index", "Members")</li>
+                    @*<li>@Html.ActionLink("GarageInfo","Index", "GarageInfo")</li>*@
                 </ul>
             </div>
         </div>
@@ -45,7 +35,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - DT. Garage. All rights reserved.</p>
         </footer>
     </div>
 
@@ -53,5 +43,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/JavaScriptVehicle.js"></script>
+    <script src="~/Scripts/JavaScriptClient.js"></script>
 </body>
 </html>
